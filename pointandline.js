@@ -8,7 +8,7 @@ document.body.appendChild(st.cv);
 st.ctx=st.cv.getContext('2d');
 st.bouncepoint=true;
 st.p=[];
-st.sump=32;
+st.sump=24;
 st.graph=[];
 st.density=0.8;
 st.init=function(){
@@ -107,7 +107,7 @@ i3=st.graph[i1].reduce(function(res,x0){
 return getacc(res,p[i1],p[x0],i1>x0?0.8:-1);
 },[0,0]);
 for(i2=1;i2<=3;++i2){
-getacc(i3,p[i1],p[Math.floor(Math.random()*st.sump)],-1,-0.001,function(x){return 0.005/Math.sqrt(x+0.001);});
+getacc(i3,p[i1],p[Math.floor(Math.random()*st.sump)],-1,-0.01,function(x){return 0.005/Math.sqrt(x+0.001);});
 }
 i2=getacc(i3,p[i1],{x:st.mousex/w1,y:st.mousey/h1},st.sump>16?3.2/st.sump:0.2,st.mouseg);
 i4=p[i1].v*l1*Math.cos(p[i1].rot);
@@ -138,14 +138,14 @@ else if(i3<0)i3=h1;
 p[i1].x=i2/w1;
 p[i1].y=i3/h1;
 if(Math.random()*Math.sqrt(p[i1].v+0.01)<0.0001){
-p[i1].v+=Math.random();
-if(Math.random()<0.5)p[i1].rot+=(Math.random()-0.5)*4;
+p[i1].v+=0.5+Math.random()
+if(Math.random()<0.5)p[i1].rot+=2.6415926+Math.random();
 }
 if(p[i1].v>1)p[i1].v*=0.95;
 else if(p[i1].v>0.1)p[i1].v*=0.99;
 i4+=p[i1].v;
 }
-if(Math.random()<0.01)console.log(i4/p.length);
+if(Math.random()<0.00233)console.log(i4/p.length);
 requestAnimationFrame(update);
 }
 update();
