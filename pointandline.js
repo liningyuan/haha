@@ -65,11 +65,11 @@ return;
 }
 st.mousex=st.cv.width/2;
 st.mousey=st.cv.height/2;
-st.mouseg=0.01;//st.sump*0.5+1;
+st.mouseg=0.01;
 window.onmousemove=st.msm=function(e){st.mousex=e.clientX;st.mousey=e.clientY;}
 window.onmousedown=st.msd=function(e){if(e.button==1)st.init();else st.mouseg=st.sump;}
-window.onmouseup=st.msu=function(e){st.mouseg=0/*0.01*(Math.random()-0.5)*/;}
-st.gravity=0.8;
+window.onmouseup=st.msu=function(e){st.mouseg=0;}
+st.gravity=1;
 st.f1=function(x0){
 return Math.sqrt(x0)-0.1;
 }
@@ -107,7 +107,7 @@ i3=st.graph[i1].reduce(function(res,x0){
 return getacc(res,p[i1],p[x0],i1>x0?0.8:-1);
 },[0,0]);
 for(i2=1;i2<=3;++i2){
-getacc(i3,p[i1],p[Math.floor(Math.random()*st.sump)],-1,-0.01,function(x){return 0.01/Math.sqrt(x+0.01);});
+getacc(i3,p[i1],p[Math.floor(Math.random()*st.sump)],-1,-0.001,function(x){return 0.005/Math.sqrt(x+0.001);});
 }
 i2=getacc(i3,p[i1],{x:st.mousex/w1,y:st.mousey/h1},st.sump>16?3.2/st.sump:0.2,st.mouseg);
 i4=p[i1].v*l1*Math.cos(p[i1].rot);
